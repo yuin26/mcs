@@ -40,3 +40,10 @@ This project is developed to study embedded software architecture used in avioni
 - `mission.c` 미션 기능 골격 구현
 - 헤더 파일(`menu.h`, `mission.h`) 분리
 - Makefile 작성 및 빌드 환경 구축
+
+### DAY 3 - 미션 데이터 관리 구현
+- 배열을 이용한 미션 데이터 관리 구현
+- enum을 활용한 미션 상태 관리
+- 미션 로드 및 상태 출력 기능 구현
+- 특정 미션 시작/종료 기능 구현
+- 입력 처리 함수 분리(`getMissionNumber()`)
