@@ -1,15 +1,26 @@
 #include <stdio.h>
 #include "menu.h"
+#include "mission.h"
+#include "types.h"
+
+static Menu menuFunctions[] = {
+    {1, "Show Status", showStatus},
+    {2, "Load Mission", loadMission},
+    {3, "Start Mission", startMission},
+    {4, "Stop Mission", stopMission}
+};
+
+#define MENU_COUNT (sizeof(menuFunctions) / sizeof(menuFunctions[0]))
 
 void showMenu(void)
 {
     printf("-----------------\n");
     printf("      Menu\n");
     printf("-----------------\n");
-    printf("1. Show Status\n");
-    printf("2. Load Mission\n");
-    printf("3. Start Mission\n");
-    printf("4. Stop Mission\n");
+    for (size_t i = 0; i < MENU_COUNT; i++)
+    {
+        printf("%d. %s\n", menuFunctions[i].id, menuFunctions[i].name);
+    }
     printf("0. EXIT\n");
     printf("-----------------\n");
 }
@@ -20,7 +31,7 @@ int getMenu(void)
     printf("Select Menu: ");
     scanf("%d", &menu);
 
-    if (menu < 0 || menu > 4)
+    if (menu < 0 || menu > (int)MENU_COUNT)
     {
         menu = -1;
     }
@@ -28,3 +39,14 @@ int getMenu(void)
     return menu;
 }
 
+void dispatchMenu(int menu)
+{
+    if (menu > 0 && menu <= (int)MENU_COUNT)
+    {
+        menuFunctions[menu - 1].handler();
+    }
+    else
+    {
+        printf("Invalid menu selection. Please try again.\n");
+    }
+}

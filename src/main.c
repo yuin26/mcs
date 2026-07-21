@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "menu.h"
 #include "mission.h"
+#include "types.h"
 
 int main(void) 
 {
@@ -12,26 +13,13 @@ int main(void)
 
         int menu = getMenu();
 
-        switch(menu)
+        if (menu == 0)
         {
-            case 1:
-            showStatus();
-            break;
-            case 2:
-            loadMission();
-            break;
-            case 3:
-            startMission();
-            break;
-            case 4:
-            stopMission();
-			break;
-            case 0:
             running = 0;
-            break;
-            default:
-            printf("Invalid Menu, retry\n");
-            break;
+        }
+        else
+        {
+            dispatchMenu(menu);
         }
     }
     printf("Program Exit\n");
